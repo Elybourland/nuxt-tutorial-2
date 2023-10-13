@@ -30,6 +30,12 @@
     <div>
       {{ user.name }}
     </div>
+
+    <div>
+      <h2>Weather</h2>
+      <div>Description: {{ weather.weather[0].description }}</div>
+      <div>Temperature: {{ weather.main.temp }} C</div>
+    </div>
   </div>
 </template>
 
@@ -53,6 +59,10 @@
 
   // short hand server side fetching - with the pick option ( for decreasing payload size)
   const { data: user } = await useFetch('https://jsonplaceholder.typicode.com/users/1', { pick: ['id', 'name', 'email'] })
+
+  // using server/api - helps hide api keys - see /api/weather for handling the $fetch
+  const { data: weather } = await useFetch('/api/weather')
+
 </script>
 
 <style scoped>
